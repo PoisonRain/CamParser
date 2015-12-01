@@ -1,0 +1,30 @@
+import java.net.InetAddress;
+
+
+public class application {
+
+	static int port = 8150;
+	static InetAddress ipaddress;
+	static TcpListener listener;
+	static TcpClient speaker;
+	
+	
+	public static void main(String[] args) {
+		try {
+			ipaddress = InetAddress.getLocalHost();
+			 
+			listener = new TcpListener(ipaddress, 8150);
+			speaker = new TcpClient(ipaddress, 8150);
+			listener.start();
+			while(true) {
+				//LISTEN
+				Thread.sleep(10000);
+				
+			}
+		}
+		catch (Exception e) {
+			System.out.println(e.toString());
+		}		
+	}
+
+}

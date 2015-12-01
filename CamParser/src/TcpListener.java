@@ -20,6 +20,9 @@ public class TcpListener extends Thread {
 //			tcpsocket.HandleTCPClientComm(clientSocket);
 			
 			//PUT HANDLER CODE HERE
+			System.out.println(new String(getMessage()));
+			
+			
 		}
 	}
 	

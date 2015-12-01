@@ -1,0 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Graph {
+	public List<Node> nodes;
+	
+	public Graph() {
+		nodes = new ArrayList<Node>();
+		Node ANode = new Node("A", null, null, null, null);
+		Node ANode = new Node("B", null, null, null, null);
+		Node ANode = new Node("C", null, null, null, null);
+		Node ANode = new Node("D", null, null, null, null);
+	}
+}

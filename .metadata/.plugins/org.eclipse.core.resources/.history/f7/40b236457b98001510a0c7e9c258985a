@@ -1,0 +1,4 @@
+
+public class Graph {
+	public List<Node> nodes;
+}

@@ -1,0 +1,34 @@
+import java.net.InetAddress;
+
+
+public class application {
+
+	static int port = 8150;
+	static InetAddress ipaddress;
+	static TcpListener listener;
+	static TcpClient speaker;
+	
+	
+	public static void main(String[] args) {
+		try {
+			ipaddress = InetAddress.getLocalHost();
+			 
+			listener = new TcpListener(ipaddress, 8150);
+			speaker = new TcpClient(ipaddress, 8150);
+			listener.start();
+			speaker.start();
+			int i=0;
+			while(true) {
+				//LISTEN
+				Thread.sleep(10000);
+				speaker.send(("Hello my child." + i).getBytes());
+				//speaker.close();
+			}
+		}
+		catch (Exception e) {
+			listener.Stop();
+			System.out.println(e.toString());
+		}		
+	}
+
+}

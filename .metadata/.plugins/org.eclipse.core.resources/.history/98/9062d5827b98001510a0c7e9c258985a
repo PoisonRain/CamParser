@@ -1,0 +1,21 @@
+
+public class Node {
+	public Node north;
+	public Node south;
+	public Node east;
+	public Node west;
+	
+	public String label;
+	
+	public Node(String Label, Node North, Node South, Node East, Node West) {
+		label = Label;
+		north = North;
+		south = South;
+		east = East;
+		west = West;
+	}
+	
+	public connect(Node other, String direction) {
+		
+	}
+}

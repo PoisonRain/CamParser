@@ -4,8 +4,12 @@ import java.net.*;
 public class TcpClient {
 
 	public Socket socket;
+	public InetAddress address;
+	public int port;
 	
 	TcpClient(InetAddress ip, int Port) throws IOException {
+		address = ip;
+		port = Port;
 		socket = new Socket(ip, Port);
 	}
 	
@@ -21,6 +25,11 @@ public class TcpClient {
 	
 	public void close() throws IOException {
 		socket.close();
+	}
+	
+	public void restart() throws IOException {
+		socket.close();
+		socket = new Socket(address, port);
 	}
 	
 }

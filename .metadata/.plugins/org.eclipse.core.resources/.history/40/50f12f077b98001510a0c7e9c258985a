@@ -1,0 +1,14 @@
+
+public class Node {
+	public Node north;
+	public Node south;
+	public Node east;
+	public Node west;
+	
+	public Node(Node North, Node South, Node East, Node West) {
+		north = North;
+		south = South;
+		east = East;
+		west = West;
+	}
+}

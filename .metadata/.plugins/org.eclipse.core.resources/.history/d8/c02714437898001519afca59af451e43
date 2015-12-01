@@ -1,0 +1,21 @@
+import java.net.InetAddress;
+
+
+public class application {
+
+	static int port = 8150;
+	static InetAddress ipaddress;
+	
+	public static void main(String[] args) {
+		try {
+			ipaddress = InetAddress.getLocalHost();
+			TcpListener listener 
+				= new TcpListener(ipaddress, 8150);
+		}
+		catch (Exception e) {
+			
+		}
+		
+	}
+
+}
