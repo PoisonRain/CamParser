@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+
+
+public class StateMachine {
+	public List<State> nodes;
+	
+	public StateMachine() {
+		nodes = new ArrayList<State>();
+		State ANode = new State("A", null, null, null, null);
+		State BNode = new State("B", null, null, null, null);
+		State CNode = new State("C", null, null, null, null);
+		State DNode = new State("D", null, null, null, null);
+		// A B
+		// C D
+		
+		try {
+			ANode.connect(BNode, "e");
+			BNode.connect(DNode, "S");
+			CNode.connect(DNode, "e");
+			ANode.connect(CNode, "s");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		nodes.add(ANode);
+		nodes.add(BNode);
+		nodes.add(CNode);
+		nodes.add(DNode);
+	}
+	
+	private List<Path> pathQueue;
+	public Path findPath(State startNode, State endNode) {
+		pathQueue = new ArrayList<Path>();
+		if(startNode.connectedTo(endNode) != null) {
+			Path p = new Path(startNode);
+			p.add(endNode);
+			return p;
+		}
+		pathQueue.add(new Path(s))
+	}
+}

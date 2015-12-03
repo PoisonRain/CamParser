@@ -1,0 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Path {
+	public List<State> states;
+	
+	public Path() {
+		states = new ArrayList<State>();
+	}
+	
+	public Path(List<State> currentPath, State nextState) {
+		states = currentPath;
+		states.add(nextState);
+	}
+}

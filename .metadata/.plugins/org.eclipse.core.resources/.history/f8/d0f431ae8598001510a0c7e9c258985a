@@ -1,0 +1,70 @@
+
+public class State {
+	public State north;
+	public State south;
+	public State east;
+	public State west;
+	
+	public String label;
+	
+	public State(String Label, State North, State South, State East, State West) {
+		label = Label;
+		north = North;
+		south = South;
+		east = East;
+		west = West;
+	}
+	
+	public List<State> connectedStates() {
+		List<States> connectedStates = new ArrayList<State>();
+		if(north != null)
+			connectedStates.add(north);
+	}
+	
+	public String connectedTo(State other) {
+		if(north == other) return "n";
+		if(south == other) return "s";
+		if(east == other) return "e";
+		if(west == other) return "w";
+		return null; 
+	}
+	
+	public void connect(State other, String direction) throws Exception {
+		direction = direction.toLowerCase();
+		if(other==null) {
+			connectToNull(direction);
+			return;
+		}
+		switch(direction) {
+		case "n":
+			north = other;
+			other.south = this;
+		case "s":
+			south = other;
+			other.north = this;
+		case "e":
+			east = other;
+			other.west = this;
+		case "w":
+			west = other;
+			other.east = this;
+		default:
+			throw new Exception("Invalid direction.");
+		}
+	}
+	
+	public void connectToNull(String direction) throws Exception {
+		switch(direction) {
+		case "n":
+			north = null;
+		case "s":
+			south = null;
+		case "e":
+			east = null;
+		case "w":
+			west = null;
+		default:
+			throw new Exception("Invalid direction.");
+		}
+	}
+}

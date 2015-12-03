@@ -1,0 +1,15 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Path {
+	public List<State> path;
+	
+	public Path() {
+		path = new ArrayList<State>();
+	}
+	
+	public Path(List<State> currentPath, State nextState) {
+		path = currentPath;
+	}
+}

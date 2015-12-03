@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Path {
+	public List<State> states;
+	
+	public Path() {
+		states = new ArrayList<State>();
+	}
+	
+	public Path(State startState) {
+		states = new ArrayList<State>();
+		states.add(startState);
+	}
+	
+	public Path(List<State> currentPath, State nextState) {
+		states = currentPath;
+		states.add(nextState);
+	}
+	
+	public boolean containsState(State s) {
+		return states.contains(s);
+	}
+	
+	public void add(State s) {
+		states.add(s);
+	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for(State s : states) {
+			sb.append(s.label);
+			sb.append("\n");
+		}
+		return sb.toString()
+	}
+}

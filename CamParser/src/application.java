@@ -19,12 +19,19 @@ public class application {
 			listener.start();
 			//speaker.start();
 			int i=0;
+			
+			StateMachine sm = new StateMachine();
+			Path p = sm.findPath(sm.nodes.get(0), sm.nodes.get(sm.nodes.size()-1));
+			System.out.println(p.toString());
+			
 			while(true) {
 				//LISTEN
 				Thread.sleep(1000);
 				speaker.send(("Hello my child." + i++).getBytes());
 				speaker.restart();
 			}
+			
+			
 		}
 		catch (Exception e) {
 			e.printStackTrace();
