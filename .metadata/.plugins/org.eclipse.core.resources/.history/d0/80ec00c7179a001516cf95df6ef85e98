@@ -51,7 +51,6 @@ public class TcpListener extends Thread {
 		byte[] message;
 		DataInputStream input = new DataInputStream(clientSocket.getInputStream());
 		int lengthOfMessage = input.readInt();
-		message = new byte[lengthOfMessage];
 		clientSocket.getInputStream().read(message);
 		//Extensions.debug("TcpListener heard message.", 2);
 		return message;
