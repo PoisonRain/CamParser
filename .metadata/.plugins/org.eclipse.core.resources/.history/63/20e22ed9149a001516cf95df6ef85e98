@@ -17,6 +17,7 @@ public class application {
 			listener = new TcpListener(ipaddress, port);
 			speaker = new TcpClient(ipaddress, port);
 			listener.start();
+			//speaker.start();
 			int i=0;
 			
 			StateMachine sm = new StateMachine();

@@ -59,19 +59,7 @@ public class Path {
 		return new Path(newStates);
 	}
 	
-	public String getDirection(String label) {
-		State currentState = null;
-		int Index = -1;
-		for(int i=0; i<states.size(); i++) {
-			if(states.get(i).label.equals(label)) {
-				currentState = states.get(i);
-				Index = i;
-				break;
-			}
-		}
-		if(currentState == null) return null;
-		if(Index == states.size()-1) return "Finish";
-		State nextState = states.get(Index+1);
-		return currentState.directionTo(nextState.label);
+	public String getDirection() {
+		
 	}
 }

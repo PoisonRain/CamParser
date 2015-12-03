@@ -122,14 +122,13 @@ public class State {
 			return "n";
 		}
 		if(south != null && south.label.equals(otherLabel)) {
-			return "s";
+			return "n";
 		}
-		if(east != null && east.label.equals(otherLabel)) {
-			return "e";
+		if(north.label.equals(otherLabel)) {
+			return "n";
 		}
-		if(west != null && west.label.equals(otherLabel)) {
-			return "w";
+		if(north.label.equals(otherLabel)) {
+			return "n";
 		}
-		return null;
 	}
 }

@@ -17,14 +17,12 @@ public class application {
 			listener = new TcpListener(ipaddress, port);
 			speaker = new TcpClient(ipaddress, port);
 			listener.start();
+			//speaker.start();
 			int i=0;
 			
 			StateMachine sm = new StateMachine();
 			Path p = sm.findPath(sm.nodes.get(0), sm.nodes.get(sm.nodes.size()-1));
 			System.out.println(p.toString());
-			for(State s : p.states) {
-				System.out.println(p.getDirection(s.label));
-			}
 			
 			while(true) {
 				//LISTEN

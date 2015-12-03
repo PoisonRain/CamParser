@@ -117,19 +117,7 @@ public class State {
 			throw new Exception("Invalid direction.");
 	}
 	
-	public String directionTo(String otherLabel) {
-		if(north != null &&north.label.equals(otherLabel)) {
-			return "n";
-		}
-		if(south != null && south.label.equals(otherLabel)) {
-			return "s";
-		}
-		if(east != null && east.label.equals(otherLabel)) {
-			return "e";
-		}
-		if(west != null && west.label.equals(otherLabel)) {
-			return "w";
-		}
-		return null;
+	public String directionTo(String otherState) {
+		
 	}
 }
