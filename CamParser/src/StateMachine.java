@@ -41,7 +41,7 @@ public class StateMachine {
 		nodes.add(GNode);
 		
 		for(State s : nodes) {
-			System.out.println(s);
+			//System.out.println(s);
 		}
 	}
 	
@@ -59,14 +59,14 @@ public class StateMachine {
 		while(pathQueue.size() > 0) {
 			Path wPath = pathQueue.remove(0);
 			State lastState = wPath.states.get(wPath.states.size()-1);
-			System.out.println(wPath);
+			//System.out.println(wPath);
 			for(State s : lastState.connectedStates()) {
 				Path pathToS = wPath.getCopy();
 				pathToS.add(s);
 				if(s == endNode) {
 					if(bestPath == null || pathToS.length() < bestPath.length()){
 						bestPath = pathToS.getCopy();
-						System.out.println("Changed best path to \n" + bestPath);
+						//System.out.println("Changed best path to \n" + bestPath);
 					}
 				}
 				if(pathToS.length() < s.distance) {

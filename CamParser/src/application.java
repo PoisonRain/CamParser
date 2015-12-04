@@ -12,7 +12,8 @@ public class application {
 	
 	public static void main(String[] args) {
 		try {
-			ipaddress = InetAddress.getLocalHost();
+			//ipaddress = InetAddress.getLocalHost();
+			ipaddress = InetAddress.getByName("144.39.172.173");
 			 
 			listener = new TcpListener(ipaddress, port);
 			//speaker = new TcpClient(ipaddress, port);
@@ -21,9 +22,9 @@ public class application {
 			
 			StateMachine sm = new StateMachine();
 			Path p = sm.findPath(sm.nodes.get(0), sm.nodes.get(sm.nodes.size()-1));
-			System.out.println(p.toString());
+			//System.out.println(p.toString());
 			for(State s : p.states) {
-				System.out.println(p.getDirection(s.label));
+				//System.out.println(p.getDirection(s.label));
 			}
 			
 			while(true) {
@@ -36,6 +37,7 @@ public class application {
 			
 		}
 		catch (Exception e) {
+			System.out.println("I died.");
 			e.printStackTrace();
 			try {
 				listener.Stop();
