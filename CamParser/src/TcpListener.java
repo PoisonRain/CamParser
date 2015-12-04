@@ -48,9 +48,12 @@ public class TcpListener extends Thread {
 		}
 	}
 	
+	
+	static InetAddress phoneAddress;
 	public byte[] getMessage() throws IOException {
 		byte[] message = new byte[4096];
 		DataInputStream input = new DataInputStream(clientSocket.getInputStream());
+		phoneAddress = clientSocket.getInetAddress();
 		int fileSize = input.readInt();
 		System.out.println("Length of message: " + fileSize);
 		
