@@ -1,4 +1,5 @@
 import java.io.DataInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.*;
 
@@ -21,9 +22,9 @@ public class TcpListener extends Thread {
 //			tcpsocket.HandleTCPClientComm(clientSocket);
 			
 			//PUT HANDLER CODE HERE
-			System.out.println(new String(getMessage()));
-			
-			
+			//System.out.println(new String(getMessage()));
+			getMessage();
+
 		}
 	}
 	
@@ -48,12 +49,29 @@ public class TcpListener extends Thread {
 	}
 	
 	public byte[] getMessage() throws IOException {
-		byte[] message;
+		byte[] message = new byte[4096];
 		DataInputStream input = new DataInputStream(clientSocket.getInputStream());
-		int lengthOfMessage = input.readInt();
-		message = new byte[lengthOfMessage];
-		clientSocket.getInputStream().read(message);
-		//Extensions.debug("TcpListener heard message.", 2);
+		int fileSize = input.readInt();
+		System.out.println("Length of message: " + fileSize);
+		
+		FileOutputStream fos = new FileOutputStream("image.jpg");
+		int count;
+		try {
+			while ((count = input.read(message)) > 0)
+			{
+				fos.write(message, 0, count);
+				System.out.println("Wrote " + count + " bytes.");
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Broke, with Exception: " + e.toString());
+			e.printStackTrace();
+		}
+		finally {
+			fos.close();
+		}
+		System.out.println("Wrote entire file.");
+		
 		return message;
 	}
 }

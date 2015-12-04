@@ -15,7 +15,7 @@ public class application {
 			ipaddress = InetAddress.getLocalHost();
 			 
 			listener = new TcpListener(ipaddress, port);
-			speaker = new TcpClient(ipaddress, port);
+			//speaker = new TcpClient(ipaddress, port);
 			listener.start();
 			int i=0;
 			
@@ -29,8 +29,8 @@ public class application {
 			while(true) {
 				//LISTEN
 				Thread.sleep(1000);
-				speaker.send(("Hello my child." + i++).getBytes());
-				speaker.restart();
+				//speaker.send(("Hello my child." + i++).getBytes());
+				//speaker.restart();
 			}
 			
 			
