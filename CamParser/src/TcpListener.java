@@ -1,9 +1,12 @@
 import java.io.DataInputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class TcpListener extends Thread {
 	public InetAddress IPAddress;
@@ -11,6 +14,8 @@ public class TcpListener extends Thread {
 	
 	public ServerSocket socket;
 	public Socket clientSocket;
+	
+	public String folder = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").toString();
 	
 	public TcpListener(InetAddress ip, int port) throws Exception {
 		IPAddress = ip;
@@ -61,7 +66,10 @@ public class TcpListener extends Thread {
 		int fileSize = input.readInt();
 		System.out.println("Length of message: " + fileSize);
 		
-		String filename = "image"+ imageIndex++ +".jpg";
+		File f = new File(folder);
+		f.mkdir();
+		
+		String filename = this.folder + "/" + "image"+ imageIndex++ +".jpg";
 		imageFiles.add(filename);
 		FileOutputStream fos = new FileOutputStream(filename);
 		
