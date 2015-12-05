@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.Scanner;
 
 
 public class application {
@@ -9,9 +10,11 @@ public class application {
 	static TcpListener listener;
 	static TcpClient speaker;
 	
+	public static Scanner sc;
 	
 	public static void main(String[] args) {
 		try {
+			sc = new Scanner(System.in);
 			//ipaddress = InetAddress.getLocalHost();
 			ipaddress = InetAddress.getByName("144.39.172.173");
 			 
@@ -29,9 +32,10 @@ public class application {
 			
 			while(true) {
 				//LISTEN
-				Thread.sleep(1000);
+				//Thread.sleep(1000);
 				//speaker.send(("Hello my child." + i++).getBytes());
 				//speaker.restart();
+				System.out.println(sm.getDirection(sc.next().trim()));
 			}
 			
 			

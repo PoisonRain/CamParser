@@ -59,6 +59,13 @@ public class Path {
 		return new Path(newStates);
 	}
 	
+	public boolean containsLabel(String label) {
+		for(State s : states) {
+			if(s.label.equals(label)) return true;
+		}
+		return false;
+	}
+	
 	public String getDirection(String label) {
 		State currentState = null;
 		int Index = -1;

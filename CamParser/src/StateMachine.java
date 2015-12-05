@@ -45,6 +45,33 @@ public class StateMachine {
 		}
 	}
 	
+	public boolean containsLabel(String label) {
+		for(State s : nodes) {
+			if(s.label.equals(label)) return true;
+		}
+		return false;
+	}
+	
+	public State nodeWithLabel(String label) {
+		for(State s : nodes) {
+			if(s.label.equals(label)) return s;
+		}
+		return null;
+	}
+	
+	public String getDirection(String label) {
+		if(currentPath == null || !currentPath.containsLabel(label)) {
+			if(this.containsLabel(label)) {
+				currentPath = findPath(nodeWithLabel(label), nodes.get(nodes.size()-1));
+			}
+			else {
+				return null;
+			}
+		}
+		return currentPath.getDirection(label);
+	}
+	
+	public Path currentPath = null;
 	private List<Path> pathQueue;
 	public Path findPath(State startNode, State endNode) {
 		pathQueue = new ArrayList<Path>();
@@ -75,6 +102,7 @@ public class StateMachine {
 				}
 			}
 		}
+		currentPath = bestPath;
 		return bestPath;
 	}
 }

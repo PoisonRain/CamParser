@@ -2,5 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-1.7.0-openjdk-1.7.0.79-2.5.5.0.fc20.x86_64"/>
+	<classpathentry kind="lib" path="/home/zacneubert/Documents/TC/workspace/CamParser/lib/jna-platform-4.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/zacneubert/Documents/TC/workspace/CamParser/lib/jna-4.1.0.jar"/>
+	<classpathentry kind="lib" path="/home/zacneubert/Documents/TC/workspace/CamParser/lib/httpmime-4.5.1.jar"/>
+	<classpathentry kind="lib" path="/home/zacneubert/Documents/TC/workspace/CamParser/lib/httpcore-4.4.3.jar"/>
+	<classpathentry kind="lib" path="/home/zacneubert/Documents/TC/workspace/CamParser/lib/httpclient-win-4.5.1.jar"/>
+	<classpathentry kind="lib" path="/home/zacneubert/Documents/TC/workspace/CamParser/lib/httpclient-cache-4.5.1.jar"/>
+	<classpathentry kind="lib" path="/home/zacneubert/Documents/TC/workspace/CamParser/lib/httpclient-4.5.1.jar"/>
+	<classpathentry kind="lib" path="/home/zacneubert/Documents/TC/workspace/CamParser/lib/fluent-hc-4.5.1.jar"/>
+	<classpathentry kind="lib" path="/home/zacneubert/Documents/TC/workspace/CamParser/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="/home/zacneubert/Documents/TC/workspace/CamParser/lib/commons-codec-1.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -2,6 +2,8 @@ import java.io.DataInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TcpListener extends Thread {
 	public InetAddress IPAddress;
@@ -50,6 +52,8 @@ public class TcpListener extends Thread {
 	
 	
 	static InetAddress phoneAddress;
+	static int imageIndex = 0;
+	static List<String> imageFiles = new ArrayList<String>();
 	public byte[] getMessage() throws IOException {
 		byte[] message = new byte[4096];
 		DataInputStream input = new DataInputStream(clientSocket.getInputStream());
@@ -57,7 +61,11 @@ public class TcpListener extends Thread {
 		int fileSize = input.readInt();
 		System.out.println("Length of message: " + fileSize);
 		
-		FileOutputStream fos = new FileOutputStream("image.jpg");
+		String filename = "image"+ imageIndex++ +".jpg";
+		imageFiles.add(filename);
+		FileOutputStream fos = new FileOutputStream(filename);
+		
+		
 		int count;
 		try {
 			while ((count = input.read(message)) > 0)

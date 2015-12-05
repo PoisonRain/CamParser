@@ -23,6 +23,10 @@ public class TcpClient {
 		socket.getOutputStream().write(b);
 	}
 	
+	public void sendLetter(String s) throws IOException {
+		send(s.getBytes());
+	}
+	
 	public void close() throws IOException {
 		socket.close();
 	}
