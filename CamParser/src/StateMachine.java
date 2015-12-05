@@ -68,6 +68,7 @@ public class StateMachine {
 				return null;
 			}
 		}
+		System.out.println(currentPath);
 		return currentPath.getDirection(label);
 	}
 	
@@ -75,6 +76,7 @@ public class StateMachine {
 	private List<Path> pathQueue;
 	public Path findPath(State startNode, State endNode) {
 		pathQueue = new ArrayList<Path>();
+		for(State s : nodes) s.distance = Integer.MAX_VALUE;
 		startNode.distance = 0;
 		Path p = new Path(startNode);
 		if(startNode.connectedTo(endNode) != null) {

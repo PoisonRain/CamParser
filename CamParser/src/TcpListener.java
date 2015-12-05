@@ -15,12 +15,14 @@ public class TcpListener extends Thread {
 	public ServerSocket socket;
 	public Socket clientSocket;
 	
-	public String folder = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").toString();
+	public SimpleDateFormat folderFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+	public String folder;
 	
 	public TcpListener(InetAddress ip, int port) throws Exception {
 		IPAddress = ip;
 		Port = port;
 		socket = new ServerSocket(port, 100, ip);
+		folder = folderFormat.format(System.currentTimeMillis());
 	}
 	
 	public void Listen() throws IOException, InterruptedException {
