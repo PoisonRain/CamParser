@@ -7,6 +7,8 @@ public class TcpClient {
 	public InetAddress address;
 	public int port;
 	
+	public static final int phonePort = 9150; //probably
+	
 	TcpClient(InetAddress ip, int Port) throws IOException {
 		address = ip;
 		port = Port;

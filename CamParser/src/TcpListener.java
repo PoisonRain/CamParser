@@ -58,7 +58,7 @@ public class TcpListener extends Thread {
 	}
 	
 	
-	static InetAddress phoneAddress;
+	static InetAddress phoneAddress = null;
 	static int imageIndex = 0;
 	static List<String> imageFiles = new ArrayList<String>();
 	public byte[] getMessage() throws IOException {

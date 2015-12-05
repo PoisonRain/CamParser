@@ -77,7 +77,7 @@ public class Path {
 			}
 		}
 		if(currentState == null) return null;
-		if(Index == states.size()-1) return "Finish";
+		if(Index == states.size()-1) return "f";
 		State nextState = states.get(Index+1);
 		return currentState.directionTo(nextState.label);
 	}
