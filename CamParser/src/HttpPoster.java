@@ -17,11 +17,11 @@ public class HttpPoster {
 	public final String tesseractAddress = "";
 	
 	//http://stackoverflow.com/questions/17173435/send-image-file-using-java-http-post-connections
-	public static void postImage(String filename) throws IOException {
+	public static String postImage(String filename) throws IOException {
 	    HttpClient httpclient = new DefaultHttpClient();
 	    httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
 
-	    HttpPost httppost = new HttpPost("http://localhost:9000/upload");
+	    HttpPost httppost = new HttpPost("http://129.123.7.140:10000/OcrProcessorServlet/OcrServlet");
 	    File file = new File("./" + filename);
 
 	    MultipartEntity mpEntity = new MultipartEntity();
@@ -43,5 +43,7 @@ public class HttpPoster {
 	    }
 
 	    httpclient.getConnectionManager().shutdown();
+	    
+	    return response.toString();
 	}
 }

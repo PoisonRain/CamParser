@@ -23,7 +23,7 @@ public class application {
 			out = new FileOutputStream(logfile);
 			sc = new Scanner(System.in);
 			//ipaddress = InetAddress.getLocalHost();
-			ipaddress = InetAddress.getByName("144.39.172.173");
+			ipaddress = InetAddress.getByName("144.39.175.126");
 			 
 			listener = new TcpListener(ipaddress, port);
 			//speaker = new TcpClient(ipaddress, port);
@@ -37,11 +37,12 @@ public class application {
 				//System.out.println(p.getDirection(s.label));
 			}
 
+			System.out.println(HttpPoster.postImage("image.jpg"));
+			
 			while(true) {
-				//LISTEN
-				//Thread.sleep(1000);
-				//speaker.send(("Hello my child." + i++).getBytes());
-				//speaker.restart();
+				//
+				// Code that talks with Tesseract goes here
+				//
 				String direction = sm.getDirection(sc.next().trim());
 				System.out.println(direction);
 				out.write((direction+"\n").getBytes());
@@ -53,7 +54,7 @@ public class application {
 			}			
 		}
 		catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			try {
 				listener.Stop();
 				listener.interrupt();
