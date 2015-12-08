@@ -17,18 +17,19 @@ public class StateMachine {
 		State GNode = new State("G", null, null, null, null);
 		State HNode = new State("H", null, null, null, null);
 		// A B
-		// C D
+		// C D E
+		//     F
+		//     G
 		
 		try {
 			ANode.connect(BNode, "e");
-			BNode.connect(DNode, "S");
+			BNode.connect(DNode, "s");
 			CNode.connect(DNode, "e");
 			ANode.connect(CNode, "s");
 			DNode.connect(ENode, "e");
 			ENode.connect(FNode, "s");
 			FNode.connect(GNode, "s");
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		

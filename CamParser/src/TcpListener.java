@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.net.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
-
+// Receives the images coming from the Android
+// and places the image filepath into a queue.
 public class TcpListener extends Thread {
 	public InetAddress IPAddress;
 	public int Port;
@@ -17,6 +19,8 @@ public class TcpListener extends Thread {
 	
 	public SimpleDateFormat folderFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	public String folder;
+
+	private static LinkedList<String> imageFileQueue = new LinkedList<String>();
 	
 	public TcpListener(InetAddress ip, int port) throws Exception {
 		IPAddress = ip;
@@ -25,15 +29,28 @@ public class TcpListener extends Thread {
 		folder = folderFormat.format(System.currentTimeMillis());
 	}
 	
+	public String dequeueImageFile() {
+		return imageFileQueue.poll();
+	}
+	
+	public boolean imageFileQueueIsEmpty() {
+		return imageFileQueue.isEmpty();
+	}
+	
+	private void queueImageFile(String file) {
+		imageFileQueue.addLast(file);
+	}
+	
 	public void Listen() throws IOException, InterruptedException {
+		System.out.println("Now listening for images: " + IPAddress.getHostName());
 		while(true) {
 			clientSocket = socket.accept();
-//			tcpsocket.HandleTCPClientComm(clientSocket);
-			
-			//PUT HANDLER CODE HERE
-			//System.out.println(new String(getMessage()));
-			getMessage();
-
+			try {
+				getMessage();
+			} catch (Exception e) {
+				System.out.println("Failed to get message");
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -41,47 +58,43 @@ public class TcpListener extends Thread {
 		try {
 			Listen();
 		} catch (IOException e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 		}
 	}
 	
 	public void Stop() throws IOException {
 		try {
 			socket.close();
-		}
-		catch (SocketException e) {
-			//already closed
+		} catch (SocketException e) {
+			e.printStackTrace();
 		}
 	}
 	
 	
 	static InetAddress phoneAddress = null;
 	static int imageIndex = 0;
-	static List<String> imageFiles = new ArrayList<String>();
+	
 	public byte[] getMessage() throws IOException {
 		byte[] message = new byte[4096];
 		DataInputStream input = new DataInputStream(clientSocket.getInputStream());
 		phoneAddress = clientSocket.getInetAddress();
 		int fileSize = input.readInt();
-		System.out.println("Length of message: " + fileSize);
+		System.out.println("Receiving image of length: " + fileSize);
 		
 		File f = new File(folder);
 		f.mkdir();
 		
 		String filename = this.folder + "/" + "image"+ imageIndex++ +".jpg";
-		imageFiles.add(filename);
+		queueImageFile(filename);
 		FileOutputStream fos = new FileOutputStream(filename);
-		
 		
 		int count;
 		try {
 			while ((count = input.read(message)) > 0)
 			{
 				fos.write(message, 0, count);
-				System.out.println("Wrote " + count + " bytes.");
 			}
 		}
 		catch (Exception e) {
