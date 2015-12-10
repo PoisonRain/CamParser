@@ -12,36 +12,9 @@ import org.apache.http.impl.client.HttpClients;
 
 public class HttpPoster {
 	public static final String tesseractAddress1 = "http://129.123.7.140:10000/OcrProcessorServlet/OcrServlet";
-	public static final String tesseractAddress2 = "";
+	public static final String tesseractAddress2 = "http://129.123.7.222:8080/OcrProcessorServlet/OcrServlet";
 	
-	//http://stackoverflow.com/questions/17173435/send-image-file-using-java-http-post-connections
-	public static String postImage(String filename) throws IOException {
-//	    HttpClient httpclient = new DefaultHttpClient();
-//	    httpclient.getParams().setParameter(CoreProtocolPNames.PROTOCOL_VERSION, HttpVersion.HTTP_1_1);
-//
-//	    HttpPost httppost = new HttpPost(tesseractAddress1);
-//	    File file = new File("./" + filename);
-//
-//	    MultipartEntity mpEntity = new MultipartEntity();
-//	    ContentBody cbFile = new FileBody(file, "image/jpeg");
-//	    mpEntity.addPart("userfile", cbFile);
-//
-//
-//	    httppost.setEntity(mpEntity);
-//	    System.out.println("executing request " + httppost.getRequestLine());
-//	    HttpResponse response = httpclient.execute(httppost);
-//	    HttpEntity resEntity = response.getEntity();
-//
-//	    System.out.println(response.getStatusLine());	    
-//	    if (resEntity != null) {
-//	      System.out.println(EntityUtils.toString(resEntity));
-//	    }
-//	    if (resEntity != null) {
-//	      resEntity.consumeContent();
-//	    }
-//
-//	    httpclient.getConnectionManager().shutdown();    
-	    
+	public static String postImage(String filename) throws IOException {	    
 	    //Http Client for the sending the request
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(tesseractAddress1);
@@ -78,6 +51,6 @@ public class HttpPoster {
 
         System.out.println("Tesseract-OCR response: " + sb.toString());
 	    
-	    return sb.toString();
+	    return sb.toString().toUpperCase();
 	}
 }

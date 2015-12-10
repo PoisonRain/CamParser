@@ -53,7 +53,7 @@ public class application {
 						System.out.println("Found direction: " + direction);
 						
 						if(direction != null) {
-							out.write((filepath + "Recognized State: " + response.trim() + " | Direction: " + direction+"\n").getBytes());
+							out.write((filepath + " | Recognized State: " + response.trim() + " | Direction: " + direction+"\n").getBytes());
 							
 							if(TcpListener.phoneAddress != null) {
 								TcpClient toPhone = new TcpClient(TcpListener.phoneAddress, TcpClient.phonePort);
