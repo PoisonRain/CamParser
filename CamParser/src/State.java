@@ -118,7 +118,7 @@ public class State {
 	}
 	
 	public String directionTo(String otherLabel) {
-		if(north != null &&north.label.equals(otherLabel)) {
+		if(north != null && north.label.equals(otherLabel)) {
 			return "n";
 		}
 		if(south != null && south.label.equals(otherLabel)) {

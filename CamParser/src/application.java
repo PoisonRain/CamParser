@@ -22,22 +22,16 @@ public class application {
 			File logfile = new File(logformat.format(System.currentTimeMillis())+".txt");
 			out = new FileOutputStream(logfile);
 			sc = new Scanner(System.in);
-			//ipaddress = InetAddress.getLocalHost();
+//			ipaddress = InetAddress.getLocalHost();
 			ipaddress = InetAddress.getByName("144.39.197.47");
 			 
 			listener = new TcpListener(ipaddress, port);
 			listener.start();	
 			
 			StateMachine sm = new StateMachine();
-			Path p = sm.findPath(sm.nodes.get(0), sm.nodes.get(sm.nodes.size()-1));
-			System.out.println(p.toString());
-//			for(State s : p.states) {
-//				System.out.println(p.getDirection(s.label));
-//			}
+			sm.findPath(sm.nodes.get(0), sm.nodes.get(sm.nodes.size()-1));
 			
-//			For testing
-//			System.out.println(HttpPoster.postImage("letter-g.jpg"));
-			
+			boolean hasNoIOError = true;
 			while(true) {
 				// If there is an image in the queue, send it to tesseract.
 				// Await the response and then send it to the phone via TCP.
@@ -47,15 +41,16 @@ public class application {
 					System.out.println("imagefile queue is not empty");
 					try {
 						String filepath = listener.dequeueImageFile();
-						String response = HttpPoster.postImage(filepath);
+						String tesseractResponse = HttpPoster.postImage(filepath);
+						
 						//Queue the response to be sent back to the Android phone.
-						String direction = sm.getDirection(response.trim());
+						String direction = sm.getDirection(tesseractResponse.trim());
 						System.out.println("Found direction: " + direction);
 						
 						if(direction != null) {
-							out.write((filepath + " | Recognized State: " + response.trim() + " | Direction: " + direction+"\n").getBytes());
+							out.write((filepath + " | Recognized State: " + tesseractResponse.trim() + " | Direction: " + direction+"\n").getBytes());
 							
-							if(TcpListener.phoneAddress != null) {
+							if(TcpListener.phoneAddress != null && hasNoIOError) {
 								TcpClient toPhone = new TcpClient(TcpListener.phoneAddress, TcpClient.phonePort);
 								toPhone.sendLetter(direction);
 								toPhone.close();
@@ -63,12 +58,13 @@ public class application {
 						}
 						
 					} catch (IOException e) {
+						hasNoIOError = false;
 						e.printStackTrace();
 					}
 				} else {
 					System.out.println("queue is empty, sleeping");
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(400);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
