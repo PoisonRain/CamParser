@@ -29,6 +29,8 @@ public class StateMachine {
 			DNode.connect(ENode, "e");
 			ENode.connect(FNode, "s");
 			FNode.connect(GNode, "s");
+			HNode.connect(FNode, "e");
+			HNode.connect(DNode, "n");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,6 +41,7 @@ public class StateMachine {
 		nodes.add(DNode);
 		nodes.add(ENode);
 		nodes.add(FNode);
+		nodes.add(HNode);
 		nodes.add(GNode);
 		
 		for(State s : nodes) {
